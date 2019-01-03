@@ -744,6 +744,15 @@ public class HealthPlugin extends CordovaPlugin {
                         String sourceBundleId = dataSource.getAppPackageName();
                         if (sourceBundleId != null) obj.put("sourceBundleId", sourceBundleId);
                     }
+                    if (dataSource.getDevice() != null) {
+                        String deviceId = dataSource.getDevice().toString();
+                        if (deviceId != null) {
+                            obj.put("deviceManufacturer", dataSource.getDevice().getManufacturer());
+                            obj.put("deviceModel", dataSource.getDevice().getModel());
+                            obj.put("deviceId", dataSource.getDevice().getUid());
+                        }
+                    }
+                    obj.put("streamName", dataSource.getStreamName());
 
                     //reference for fields: https://developers.google.com/android/reference/com/google/android/gms/fitness/data/Field.html
                     if (DT.equals(DataType.TYPE_STEP_COUNT_DELTA)) {
